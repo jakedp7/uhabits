@@ -27,6 +27,7 @@ import android.view.*;
 import android.widget.*;
 
 import org.isoron.uhabits.R;
+import org.isoron.uhabits.core.models.Habit;
 
 import java.text.DecimalFormat;
 
@@ -42,6 +43,9 @@ public class TargetPanel extends FrameLayout
 
     @BindView(R.id.tvTargetCount)
     TextView tvTargetValue;
+
+    @BindView(R.id.spinnerTargetType)
+    Spinner spinnerTargetType;
 
     public TargetPanel(@NonNull Context context, @Nullable AttributeSet attrs)
     {
@@ -61,6 +65,18 @@ public class TargetPanel extends FrameLayout
     public void setTargetValue(double targetValue)
     {
         tvTargetValue.setText(valueFormatter.format(targetValue));
+    }
+
+    public Integer getTargetType()
+    {
+        int position = spinnerTargetType.getSelectedItemPosition();
+        return getTargetTypeFromQuickSelectPosition(position);
+    }
+
+    public void setTargetType(Integer targetType)
+    {
+        int position = getQuickSelectPositionFromTargetType(targetType);
+        spinnerTargetType.setSelection(position);
     }
 
     public String getUnit()
@@ -87,5 +103,19 @@ public class TargetPanel extends FrameLayout
         }
 
         return true;
+    }
+
+    private Integer getTargetTypeFromQuickSelectPosition(@NonNull Integer position)
+    {
+        if (position.equals(0)) return Habit.AT_LEAST;
+        if (position.equals(1)) return Habit.AT_MOST;
+        return -1;
+    }
+
+    private int getQuickSelectPositionFromTargetType(@NonNull Integer type)
+    {
+        if (type.equals(Habit.AT_LEAST)) return 0;
+        if (type.equals(Habit.AT_MOST)) return 1;
+        return -1;
     }
 }

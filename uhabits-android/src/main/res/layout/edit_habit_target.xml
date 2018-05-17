@@ -22,12 +22,18 @@
               xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://isoron.org/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:orientation="horizontal">
 
-    <TextView
-        style="@style/dialogFormLabel"
-        android:text="@string/target"/>
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinnerTargetType"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:entries="@array/targetValues"
+        android:minWidth="120dp"
+        android:theme="@style/dialogFormText"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="4dp"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="0dp"
@@ -41,8 +47,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/count"
             android:inputType="numberDecimal"
-            android:text="@string/default_count"
-            />
+            android:text="@string/default_count"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
