@@ -179,6 +179,7 @@ public class EditHabitDialog extends AppCompatDialogFragment
         habit.setFrequency(frequencyPanel.getFrequency());
         habit.setUnit(targetPanel.getUnit());
         habit.setTargetValue(targetPanel.getTargetValue());
+        habit.setTargetType(targetPanel.getTargetType());
         habit.setType(type);
 
         saveHabit(habit);
@@ -215,6 +216,7 @@ public class EditHabitDialog extends AppCompatDialogFragment
         setPanelsForType(habit.getType());
         frequencyPanel.setFrequency(habit.getFrequency());
         targetPanel.setTargetValue(habit.getTargetValue());
+        targetPanel.setTargetType(habit.getTargetType());
         targetPanel.setUnit(habit.getUnit());
         if (habit.hasReminder()) reminderPanel.setReminder(habit.getReminder());
     }
